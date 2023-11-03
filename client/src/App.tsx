@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import {
+  Routes as Router,
+  Route,
+  Navigate,
+  Outlet,
+  useNavigate,
+} from "react-router-dom";
+import { useAuth } from "./Context/AuthContext";
 
-function App() {
-  const [count, setCount] = useState(0)
+const PrivateRoutes = () => {
+  const { token, user } = useAuth();
+  if (!token || !user) return <Navigate to="/login" replace />;
+  return <Outlet />;
+};
+
+const AppRoutes = () => {
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("token") as any);
+    if (!token) navigate("/login");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [localStorage]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      <Route
+        path="/login"
+        element={
+          <React.Suspense fallback={<>...</>}>
+            <Login />
+          </React.Suspense>
+        }
+      />
+      {/* <Route
+        path="/signup"
+        element={<React.Suspense fallback={<>...</>}>SignUp</React.Suspense>}
+      /> */}
+      {["/", "/client", "/client/:workId", "/client/:workId/:clientId"].map(
+        (path) => (
+          <Route element={<PrivateRoutes />}>
+            <Route
+              path={path}
+              element={
+                <React.Suspense fallback={<>...</>}>
+                  <Chat />
+                </React.Suspense>
+              }
+            />
+          </Route>
+        )
+      )}
+      {/* Wildcard route for undefined paths. Shows a 404 error */}
+      <Route path="*" element={<p>404 Not found</p>} />
+    </Router>
+  );
+};
 
-export default App
+const Login = React.lazy(() => import("./pages/Login"));
+// const SignUp = React.lazy(() => import("../Pages/SignUp"));
+const Chat = React.lazy(() => import("./pages/Chat"));
+// const NotFound = React.lazy(() => import("../Pages/NotFound"));
+
+export default AppRoutes;

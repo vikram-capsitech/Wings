@@ -279,7 +279,7 @@ const ChatPannel = ({ fetchAgain, setFetchAgain, showDetail }: any) => {
       getMessages();
     }
     // An empty dependency array ensures this useEffect runs only once, similar to componentDidMount.
-  }, [clientId, fetchAgain]);
+  }, [clientId]);
 
   // This useEffect handles the setting up and tearing down of socket event listeners.
   useEffect(() => {

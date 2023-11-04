@@ -9,6 +9,7 @@ import {
 } from "@fluentui/react";
 import { useAuth } from "../Context/AuthContext";
 import ReactSimpleImageViewer from "react-simple-image-viewer";
+import { iconPDF } from "../Utils";
 
 const ScrollableChat = ({ messages }: any) => {
   const { user } = useAuth();
@@ -107,42 +108,52 @@ const ScrollableChat = ({ messages }: any) => {
                             key={file._id}
                             style={{
                               position: "relative",
-                              width: "180px",
-                              height: "180px",
-                              padding:10
+                              padding: 10,
                             }}
                           >
-                            <Stack
-                              style={{
-                                zIndex: 1,
-                                background: "#f3f4f85e",
-                                width: "91.9%",
-                                height: "91.9%",
-                                position: "absolute",
-                                top: 6,
-                                left: 7,
-                                borderRadius: 7,
-                                padding: 20,
-                                justifyContent: "center",
-                                alignItems: "center",
-                              }}
-                            >
-                              <IconButton
-                                iconProps={{ iconName: "ImageSearch" }}
-                                onClick={() => setResizedImage(file.url)}
-                              />
-                            </Stack>
                             {file.url.includes(".pdf") ? (
                               <Stack>
-                                <FontIcon iconName="pdf" />
+                                <img
+                                  src={iconPDF}
+                                  alt="pdf-icon"
+                                  style={{ width: 80 }}
+                                  onClick={() => {
+                                    const pdfWindow: any = window.open();
+                                    pdfWindow.location.href = file.url;
+                                  }}
+                                />
                               </Stack>
                             ) : (
-                              <img
-                                src={file.url}
-                                height={180}
-                                width={180}
-                                alt={file.extension}
-                              />
+                              <>
+                                {!resizedImage && (
+                                  <Stack
+                                    style={{
+                                      zIndex: 1,
+                                      background: "#f3f4f85e",
+                                      width: "84.9%",
+                                      height: "75.9%",
+                                      position: "absolute",
+                                      top: 13,
+                                      left: 13,
+                                      borderRadius: 7,
+                                      padding: 20,
+                                      justifyContent: "center",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <IconButton
+                                      iconProps={{ iconName: "ImageSearch" }}
+                                      onClick={() => setResizedImage(file.url)}
+                                    />
+                                  </Stack>
+                                )}
+                                <img
+                                  src={file.url}
+                                  height={100}
+                                  width={150}
+                                  alt={file.extension}
+                                />
+                              </>
                             )}
                           </div>
                         );

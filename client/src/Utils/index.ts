@@ -121,3 +121,5 @@ export class LocalStorage {
     localStorage.clear();
   }
 }
+
+export const iconPDF = 'https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/27_Pdf_File_Type_Adobe_logo_logos-512.png';

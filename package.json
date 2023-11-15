@@ -7,7 +7,10 @@
   "scripts": {
     "start": "nodemon -r dotenv/config --experimental-json-modules src/index.js",
     "pre-commit": "lint-staged",
-    "prepare": "node prepare.js"
+    "prepare": "node prepare.js",
+    "install-client": "cd client && npm install",
+    "build-client": "cd client && npm run build",
+    "start-client": "cd client && npm run start"
   },
   "repository": {
     "type": "git",

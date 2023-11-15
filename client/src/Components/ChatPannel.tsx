@@ -8,7 +8,7 @@ import {
 } from "../Interfaces/chat";
 import { useAuth } from "../Context/AuthContext";
 import ScrollableChat from "./ScrollableChat";
-import { getChatMessages, getUserChats, sendMessage } from "../Api";
+import { getChatMessages, sendMessage } from "../Api";
 import { useSocket } from "../Context/SocketContext";
 import ChatInput from "./ChatInput";
 import { ChatState } from "../Context/ChatProvider";
@@ -25,7 +25,7 @@ const MESSAGE_RECEIVED_EVENT = "messageReceived";
 const LEAVE_CHAT_EVENT = "leaveChat";
 const UPDATE_GROUP_NAME_EVENT = "updateGroupName";
 
-const ChatPannel = ({ fetchAgain, setFetchAgain, showDetail }: any) => {
+const ChatPannel = ({ fetchAgain, setFetchAgain }: any) => {
   const { chats, setChats } = ChatState();
   const [shouldRefresh, setShouldRefresh] = useState(false);
 
@@ -224,7 +224,7 @@ const ChatPannel = ({ fetchAgain, setFetchAgain, showDetail }: any) => {
   };
 
   const onNewChat = (chat: ChatListItemInterface) => {
-    setChats((prev) => [chat, ...prev]);
+    setChats((prev: any) => [chat, ...prev]);
   };
 
   // This function handles the event when a user leaves a chat.
@@ -237,7 +237,7 @@ const ChatPannel = ({ fetchAgain, setFetchAgain, showDetail }: any) => {
       LocalStorage.remove("currentChat");
     }
     // Update the chats by removing the chat that the user left.
-    setChats((prev) => prev.filter((c) => c._id !== chat._id));
+    setChats((prev: any[]) => prev.filter((c) => c._id !== chat._id));
   };
 
   // Function to handle changes in group name
@@ -252,9 +252,9 @@ const ChatPannel = ({ fetchAgain, setFetchAgain, showDetail }: any) => {
     }
 
     // Update the list of chats with the new chat details
-    setChats((prev) => [
+    setChats((prev: any[]) => [
       // Map through the previous chats
-      ...prev.map((c) => {
+      ...prev.map((c:any) => {
         // If the current chat in the map matches the chat being changed, return the updated chat
         if (c._id === chat._id) {
           return chat;

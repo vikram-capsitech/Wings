@@ -37,7 +37,7 @@ const ChatPannel = ({ fetchAgain, setFetchAgain }: any) => {
   const currentChat = useRef<ChatListItemInterface | null>(null);
 
   // To keep track of the setTimeout function
-  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const typingTimeoutRef = useRef<any | null>(null);
 
   // Define state variables and their initial values using 'useState'
   const [isConnected, setIsConnected] = useState(false); // For tracking socket connection

@@ -9,7 +9,7 @@ import {
   TextField,
 } from "@fluentui/react";
 import { CStyles } from "../Common/CStyles";
-import WingsLogo from "../../public/wings.svg";
+import WingsLogo from "../Assets/wings.svg";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 

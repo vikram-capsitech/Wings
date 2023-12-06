@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import moment from "moment";
 import {
-  FontIcon,
   IconButton,
   Persona,
   PersonaSize,
@@ -107,7 +106,7 @@ const ScrollableChat = ({ messages }: any) => {
                           <div
                             key={file._id}
                             style={{
-                              position: "relative",
+                              position: "relative", 
                               padding: 10,
                             }}
                           >

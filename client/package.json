@@ -12,6 +12,7 @@
   "dependencies": {
     "@fluentui/react": "^8.112.4",
     "@lottiefiles/react-lottie-player": "^3.5.3",
+    "@reduxjs/toolkit": "^1.9.7",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/utils": "^6.9.0",
     "axios": "^1.4.0",
@@ -24,9 +25,11 @@
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.1.3",
     "react-router-dom": "^6.11.1",
     "react-select": "^5.7.7",
     "react-simple-image-viewer": "^1.2.2",
+    "redux-persist": "^6.0.0",
     "socket.io-client": "^4.7.2",
     "typescript": "^4.4.2"
   },
@@ -49,10 +52,11 @@
     ]
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.200",
     "@types/css-modules": "^1.0.2",
+    "@types/lodash": "^4.14.200",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^17.0.11",
+    "@types/redux-persist": "^4.3.1",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",

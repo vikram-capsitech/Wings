@@ -7,6 +7,8 @@ import { AuthProvider } from "./Context/AuthContext.js";
 import { SocketProvider } from "./Context/SocketContext.js";
 import { initializeIcons, registerIcons } from "@fluentui/react";
 import ChatProvider from "./Context/ChatProvider.js";
+import { store } from "./redux/store.js";
+import { Provider as ReduxProvider } from 'react-redux'
 
 // Initialize all icons.
 initializeIcons();
@@ -79,13 +81,15 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <div className="App">
     <React.StrictMode>
       <BrowserRouter>
-        <AuthProvider>
-          <SocketProvider>
-            <ChatProvider>
-              <App />
-            </ChatProvider>
-          </SocketProvider>
-        </AuthProvider>
+        <ReduxProvider store={store}>
+          <AuthProvider>
+            <SocketProvider>
+              <ChatProvider>
+                <App />
+              </ChatProvider>
+            </SocketProvider>
+          </AuthProvider>
+        </ReduxProvider>
       </BrowserRouter>
     </React.StrictMode>
   </div>

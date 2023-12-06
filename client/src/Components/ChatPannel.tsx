@@ -37,7 +37,7 @@ const ChatPannel = ({ fetchAgain, setFetchAgain }: any) => {
   const currentChat = useRef<ChatListItemInterface | null>(null);
 
   // To keep track of the setTimeout function
-  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const typingTimeoutRef = useRef<any | null>(null);
 
   // Define state variables and their initial values using 'useState'
   const [isConnected, setIsConnected] = useState(false); // For tracking socket connection
@@ -254,7 +254,7 @@ const ChatPannel = ({ fetchAgain, setFetchAgain }: any) => {
     // Update the list of chats with the new chat details
     setChats((prev: any[]) => [
       // Map through the previous chats
-      ...prev.map((c) => {
+      ...prev.map((c:any) => {
         // If the current chat in the map matches the chat being changed, return the updated chat
         if (c._id === chat._id) {
           return chat;

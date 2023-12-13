@@ -27,7 +27,7 @@ const httpServer = createServer(app);
 const io = new Server(httpServer, {
   pingTimeout: 60000,
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'https://wings-app.vercel.app',
     credentials: true,
   },
 });
@@ -37,7 +37,7 @@ app.set("io", io); // using set method to mount the `io` instance on the app to 
 // global middlewares
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://wings-app.vercel.app',
     credentials: true,
   })
 );

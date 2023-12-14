@@ -26,6 +26,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   pingTimeout: 60000,
+  pingInterval: 3000,
   cors: {
     origin: ["http://localhost:3000","https://wings-app.vercel.app"],
     credentials: true,

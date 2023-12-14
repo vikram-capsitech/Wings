@@ -56,6 +56,11 @@ const limiter = rateLimit({
       } requests per ${options.windowMs / 60000} minutes`
     );
   },
+  validate: {
+		validationsConfig: false,
+		// ...
+		default: true,
+	},
 });
 
 // Apply the rate limiting middleware to all requests
